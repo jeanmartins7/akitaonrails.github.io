@@ -1,6 +1,8 @@
 ---
 title: "AI Agents: Qual é o melhor? OpenCode, Crush, Claude Code, GPT Codex, Copilot, Cursor, Windsurf, Antigravity?"
 slug: "ai-agents-qual-e-o-melhor-opencode-crush-claude-code-gpt-codex-copilot-cursor-windsurf-antigravity"
+aliases:
+  - /2026/01/24/ai-agents-qual-e-o-melhor-opencode-crush-claude-code-gpt-codex-gopilot-cursor-windsurf-antigravity/
 date: 2026-01-24T09:00:31-0300
 tags:
 - agents
