@@ -4,7 +4,7 @@ publish = "public"
 command = "hugo --minify -b ${DEPLOY_PRIME_URL}"
 
 [build.environment]
-HUGO_VERSION = "0.159.1"
+HUGO_VERSION = "0.161.1"
 GO_VERSION = "1.22"
 
 # Persist Hugo's processed-assets cache (resources/_gen) and module/remote

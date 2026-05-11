@@ -24,7 +24,7 @@ ENV PATH=$PATH:/usr/local/go/bin
 ENV GOPATH=/go
 ENV PATH=$PATH:$GOPATH/bin
 
-ARG HUGO_VERSION=0.159.1
+ARG HUGO_VERSION=0.161.1
 RUN ARCH=$(dpkg --print-architecture) && \
   wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${ARCH}.deb && \
   dpkg -i hugo_extended_${HUGO_VERSION}_linux-${ARCH}.deb && \
