@@ -13,6 +13,14 @@ tags:
   - ruby
 ---
 
+> **Update (May 11, 2026)**: DeepClaude is one path, not the only one. At least two others exist and are worth flagging.
+>
+> The first is **[DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI)** ([Hmbown/DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI)). A Rust-based coding agent, Codex-style workspace architecture (13 crates), Plan / Agent / YOLO modes, MCP integration, full 1M-token context support, streaming reasoning blocks. Connects directly to the DeepSeek API with proper `reasoning_content` handling by design, so it doesn't have the bug opencode had. Not officially DeepSeek (the author is Hunter Bown), but it is listed in [awesome-deepseek-agent](https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/deepseek-tui.md) curated by DeepSeek themselves, which counts as endorsement. Install via npm, cargo, homebrew, binary, or docker.
+>
+> The second is that **opencode now supports DeepSeek thinking mode** via [PR #24146](https://github.com/anomalyco/opencode/pull/24146), merged April 24, 2026. The fix preserves `reasoning_content` in turn history, but it needs manual configuration in `opencode.json`: add `interleaved: { field: "reasoning_content" }` to the DeepSeek V4 model config. Without that the bug stays, and the new names (`deepseek-v4-pro`, `deepseek-v4-flash`) aren't pre-configured with `interleaved` by default. When I ran Round 3 of the benchmark, that fix either hadn't landed yet or my config didn't have the flag set. For a future benchmark, worth re-testing via opencode with `interleaved` properly configured.
+>
+> The rest of the post below still holds — DeepClaude is the most ergonomic option for anyone using Claude Code as their primary harness. But if you're already on opencode or prefer a dedicated TUI, alternatives now exist.
+
 DeepSeek V4 Pro stopped being a lost cause in my coding benchmark. It used to be solo Tier B (69/100) and literally unmeasurable in any multi-agent scenario, because it kept hitting a protocol bug I documented across the last two posts. The good news: I found a path that unblocks the model, and it jumped out of limbo straight into **Tier A at 89/100**, sitting only behind Opus 4.7, GPT 5.4/5.5 and Kimi K2.6. I'll walk through how I got there, what **DeepClaude** is, how you can use it, and where this puts DeepSeek in the updated ranking.
 
 ## Recapping the previous posts

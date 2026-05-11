@@ -12,6 +12,14 @@ tags:
   - ruby
 ---
 
+> **Atualização (11 de maio de 2026)**: DeepClaude é um caminho, mas não é o único. Pelo menos dois outros existem e valem registro.
+>
+> O primeiro é o **[DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI)** ([Hmbown/DeepSeek-TUI](https://github.com/Hmbown/DeepSeek-TUI)). Coding agent escrito em Rust, arquitetura de workspace tipo Codex (13 crates), modos Plan / Agent / YOLO, integração MCP, suporte completo a contexto de 1M tokens, streaming de reasoning blocks. Conecta direto na API do DeepSeek com tratamento correto do `reasoning_content` por design, então não tem o bug que opencode tinha. Não é oficialmente da DeepSeek (o autor é Hunter Bown), mas está listado no [awesome-deepseek-agent](https://github.com/deepseek-ai/awesome-deepseek-agent/blob/main/docs/deepseek-tui.md) curado pela própria DeepSeek, o que conta como endosso. Instalação via npm, cargo, homebrew, binário ou docker.
+>
+> O segundo é que o **opencode passou a suportar DeepSeek thinking mode** via [PR #24146](https://github.com/anomalyco/opencode/pull/24146), mergeado em 24 de abril de 2026. A correção preserva o `reasoning_content` no histórico de turnos, mas exige configuração manual no `opencode.json`: adiciona `interleaved: { field: "reasoning_content" }` no model config do DeepSeek V4. Sem isso o bug continua, e os nomes novos (`deepseek-v4-pro`, `deepseek-v4-flash`) não estão pré-configurados com `interleaved` por padrão. Quando eu rodei a Round 3 do benchmark, essa correção ou ainda não tinha caído ou eu não estava com a config aplicada. Pra benchmark futuro, vale retestar via opencode com `interleaved` setado corretamente.
+>
+> O resto do post abaixo continua válido — DeepClaude é a opção mais ergonômica pra quem usa Claude Code como harness principal. Mas se você já está em opencode ou prefere um TUI dedicado, agora tem alternativas.
+
 DeepSeek V4 Pro deixou de ser um caso perdido no meu benchmark de coding. Antes ele era Tier B isolado (69/100) e literalmente não-mensurável em qualquer cenário multi-agente, porque batia num bug de protocolo que eu detalhei nos últimos dois posts. A boa notícia é que descobri um caminho que destrava o modelo, e ele saiu do limbo direto pra **Tier A com 89/100**, abaixo só de Opus 4.7, GPT 5.4/5.5 e Kimi K2.6. Vou contar como cheguei lá, o que é o **DeepClaude**, como você pode usar, e onde isso põe o DeepSeek no ranking atualizado.
 
 ## Recapitulando os posts anteriores
