@@ -6,6 +6,7 @@ title: AkitaOnRails Blog
 
 ## 2026 - May
 
+- [Wrapping Up My AI Marathon: Success or Failure?](/en/2026/05/14/wrapping-up-my-ai-marathon-success-or-failure/)
 - [LLM Benchmarks: DeepSeek Unlocked! Use DeepClaude](/en/2026/05/04/llm-benchmarks-deepseek-unlocked-deepclaude/)
 - [NW-Omarchy: Bringing Omarchy to X11 with XLibre](/en/2026/05/01/nw-omarchy-xlibre-inaugural/)
 
